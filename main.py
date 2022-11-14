@@ -198,7 +198,7 @@ class Report:
         fig, axis = plt.subplots(2, 2)
         plt.rcParams['font.size'] = 8
         self.standart_bar(axis[0, 0], self.data.year_to_salary.keys(), self.data.year_to_salary_needed.keys(),
-                          self.data.year_to_count.values(), self.data.year_to_count_needed.values(),
+                          self.data.year_to_salary.values(), self.data.year_to_salary_needed.values(),
                           "Средняя з/п", "з/п программист", "Уровень зарплат по годам")
         self.standart_bar(axis[0, 1], self.data.year_to_count.keys(), self.data.year_to_count_needed.keys(),
                           self.data.year_to_count.values(), self.data.year_to_count_needed.values(),
@@ -215,10 +215,12 @@ class Report:
         html = open("html_template.html").read()
         template = Template(html)
         keys_to_values = {
-            "prof_name": self.data.input_values.in_prof_name,
+            "title": "Аналитика по зарплатам и городам для профессии "+self.data.input_values.in_prof_name,
             "image_name": image_name,
+            "years_title": "Статистика по годам",
             "years_headers": self.sheet_1_headers,
             "years_rows": self.sheet_1_rows,
+            "cities_title": "Статистика по городам",
             "cities_headers": self.sheet_2_headers,
             "count_columns": len(self.sheet_2_headers),
             "cities_rows": self.sheet_2_rows
